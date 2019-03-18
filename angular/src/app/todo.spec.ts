@@ -20,7 +20,6 @@ describe('Todo', () => {
   });
 
   it('should validate completed is not empty/blank', () => {
-    expect(todo.completed).not.toEqual("");
     expect(todo.completed).not.toBeNull();
     expect(todo.completed).not.toBeUndefined();
   });
