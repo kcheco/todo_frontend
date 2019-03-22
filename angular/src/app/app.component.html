@@ -1,1 +1,38 @@
-<h1>{{ title }}</h1>
+<header>
+  <mat-toolbar color="primary">
+    <a class="navbar-brand">{{ title }}</a>
+  </mat-toolbar>
+</header>
+
+<section class="container">
+  <div class="row">
+    <mat-card class="col-6 mx-auto">
+      <form class="form-inline">
+        <mat-form-field appearance="standard" floatLabel="always" class="full-width">
+          <mat-label>Add a Todo</mat-label>
+          <input matInput name="newTodo[title]" placeholder="What I like doing best is Nothing" autofocus="true" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()">
+        </mat-form-field>
+      </form>
+    </mat-card>
+  </div>
+</section>
+
+<section class="container" *ngIf="todos.length > 0">
+  <div class="row pb-2" *ngFor="let todo of todos">
+    <mat-card class="col-6 mx-auto" [class.todo__completed]="todo.completed">
+      <div class="row">
+        <div class="col-1">
+          <mat-checkbox [checked]="todo.complete"></mat-checkbox>
+        </div>
+        <div class="col-9">
+          <mat-label>{{ todo.title }}</mat-label>
+        </div>
+        <div class="col-2">
+          <button mat-button class="destroy__todo" (click)="removeTodo(todo)">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</section>

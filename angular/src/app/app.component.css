@@ -1,0 +1,16 @@
+.full-width {
+  width: 100%;
+}
+
+section.container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.mat-card {
+  line-height: 36px;
+}
+
+.destroy__todo:hover {
+  color: red;
+}

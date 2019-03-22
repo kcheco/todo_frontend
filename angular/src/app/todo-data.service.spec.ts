@@ -45,6 +45,12 @@ describe('TodoDataService', () => {
       service.saveTodo(mockTodo);
       expect(service.getTodos().length).toEqual(1, 'One Todo');
     });
+
+    it('should validate title is not empty', () => {
+      let mockTodo = new Todo({title: ''});
+      
+      expect(() => { service.saveTodo(mockTodo) }).toThrowError('Todo title cannot be empty/blank.');
+    });
   });
 
   describe('#deleteTodoById(id)', () => {
@@ -86,14 +92,54 @@ describe('TodoDataService', () => {
       expect(updatedTodo.completed).toBeTruthy();
     });
 
+    it('should not change the id when being updated', () => {
+      let mockTodo = new Todo({title: 'Update the attribute values of an existing todo'});
+      service.saveTodo(mockTodo);
+      let updatedTodo = service.updateTodoById(1, {
+        title: "Updated the attribute values",
+        completed: true
+      });
+      expect(updatedTodo.id).toEqual(1);
+    })
+
     it('should return TodoNotFound exception when id does not exist', () => {
       let mockTodo = new Todo({title: 'Update the attribute values of an existing todo'});
       service.saveTodo(mockTodo);
       expect(() => {
         let todoAttributes = {
           title: 'This is for a todo that doesn\'t exist'
-        }
+        };
         service.updateTodoById(3, todoAttributes);
+      }).toThrowError('Todo with id of 3 does not exist.');
+    });
+  });
+  
+  describe('#toggleComplete', () => {
+    beforeEach(() => {
+      service = new TodoDataService();
+    });
+
+    it('should switch Todo to true if its currently false', () => {
+      let mockTodo = new Todo({title: 'Change the completion status of existing todo'});
+      service.saveTodo(mockTodo);
+      let savedTodo = service.getTodos()[0];
+      service.toggleComplete(savedTodo.id);
+      expect(savedTodo.completed).toBeTruthy();
+    });
+
+    it('should switch Todo to false if its currently true', () => {
+      let mockTodo = new Todo({title: 'Change the completion status of existing todo', completed: true});
+      service.saveTodo(mockTodo);
+      let savedTodo = service.getTodos()[0];
+      service.toggleComplete(savedTodo.id);
+      expect(savedTodo.completed).toBeFalsy();
+    });
+
+    it('should return TodoNotFound exception when id does not exist', () => {
+      let mockTodo = new Todo({title: 'Change the completion status of a todo that does not exist'});
+      service.saveTodo(mockTodo);
+      expect(() => {
+        service.toggleComplete(3);
       }).toThrowError('Todo with id of 3 does not exist.');
     });
   });

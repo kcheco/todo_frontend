@@ -11,17 +11,21 @@ import { Todo } from './todo';
 export class AppComponent {
   private newTodo: Todo = new Todo({});
   constructor(private todoDataService: TodoDataService) {
-    this.todoDataService = todoDataService;
   }
 
   title = 'TodoAngular';
 
   addTodo() {
     this.todoDataService.saveTodo(this.newTodo);
+    this.newTodo = new Todo({});
   }
 
   removeTodo(todo) {
     this.todoDataService.deleteTodoById(todo.id);
+  }
+
+  toggleCompleted(todo) {
+    this.todoDataService.toggleComplete(todo.id);
   }
 
   get todos() {
