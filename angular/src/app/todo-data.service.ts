@@ -19,11 +19,11 @@ export class TodoDataService {
     if (!todo.title) {
       throw new Error('Todo title cannot be empty/blank.');
     }
-    
+
     if (!todo.id) {
       todo.id = this.increment_id();
+      this.todos.push(todo);
     }
-    this.todos.push(todo);
 
     return this;
   };
@@ -37,8 +37,8 @@ export class TodoDataService {
     return this;
   };
 
-  updateTodoById(id: number, attributes: {}) : Todo {
-    let todo = this.getTodo(id);
+  updateTodo(attributes: {}) : Todo {
+    let todo = this.getTodo(attributes['id']);
     if (todo instanceof Todo) {
       Object.assign(todo, attributes);
       this.saveTodo(todo);
@@ -47,15 +47,19 @@ export class TodoDataService {
     return todo;
   };
 
-  toggleComplete(id: number) {
+  toggleComplete(id: number) : Todo {
+    let updatedTodo: Todo;
     let todo = this.getTodo(id);
+    
     if (todo instanceof Todo) {
-      todo.completed = todo.completed ? false : true;
-      this.saveTodo(todo);
+      todo.completed = !todo.completed;
+      updatedTodo = this.updateTodo(todo);
     }
+
+    return updatedTodo;
   }
   
-  private getTodo(id: number | string) {
+  private getTodo(id: number | string) : Todo {
     if (typeof id === 'string') {
       id = parseInt(id as string, 10);
     }

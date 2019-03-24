@@ -84,7 +84,7 @@ describe('TodoDataService', () => {
     it('should return Todo with updated values', () => {
       let mockTodo = new Todo({title: 'Update the attribute values of an existing todo'});
       service.saveTodo(mockTodo);
-      let updatedTodo = service.updateTodoById(1, {
+      let updatedTodo = service.updateTodo({
         title: "Updated the attribute values",
         completed: true
       });
@@ -95,7 +95,7 @@ describe('TodoDataService', () => {
     it('should not change the id when being updated', () => {
       let mockTodo = new Todo({title: 'Update the attribute values of an existing todo'});
       service.saveTodo(mockTodo);
-      let updatedTodo = service.updateTodoById(1, {
+      let updatedTodo = service.updateTodo({
         title: "Updated the attribute values",
         completed: true
       });
@@ -109,7 +109,7 @@ describe('TodoDataService', () => {
         let todoAttributes = {
           title: 'This is for a todo that doesn\'t exist'
         };
-        service.updateTodoById(3, todoAttributes);
+        service.updateTodo(todoAttributes);
       }).toThrowError('Todo with id of 3 does not exist.');
     });
   });
