@@ -76,7 +76,7 @@ describe('TodoDataService', () => {
     });
   });
 
-  describe('#updateTodoById(id, attributes)', () => {
+  describe('#updateTodo(attributes)', () => {
     beforeEach(() => {
       service = new TodoDataService();
     });
@@ -85,6 +85,7 @@ describe('TodoDataService', () => {
       let mockTodo = new Todo({title: 'Update the attribute values of an existing todo'});
       service.saveTodo(mockTodo);
       let updatedTodo = service.updateTodo({
+        id: 1,
         title: "Updated the attribute values",
         completed: true
       });
@@ -96,6 +97,7 @@ describe('TodoDataService', () => {
       let mockTodo = new Todo({title: 'Update the attribute values of an existing todo'});
       service.saveTodo(mockTodo);
       let updatedTodo = service.updateTodo({
+        id: 1,
         title: "Updated the attribute values",
         completed: true
       });
@@ -107,6 +109,7 @@ describe('TodoDataService', () => {
       service.saveTodo(mockTodo);
       expect(() => {
         let todoAttributes = {
+          id: 3,
           title: 'This is for a todo that doesn\'t exist'
         };
         service.updateTodo(todoAttributes);
