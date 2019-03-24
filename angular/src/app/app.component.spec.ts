@@ -10,7 +10,7 @@ import {
   MatInputModule, 
   MatCheckboxModule
 } from '@angular/material';
-import { TodoDataService } from './todo-data.service';
+import { TodoDataService } from './services/todo-data.service';
 
 describe('AppComponent', () => {
   let todoDataServiceStub : Partial<TodoDataService>;

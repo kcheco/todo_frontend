@@ -1,24 +1,31 @@
+<!-- TODO convert to header component -->
 <header>
   <mat-toolbar color="primary">
     <a class="navbar-brand">{{ title }}</a>
   </mat-toolbar>
 </header>
 
+<!-- TODO convert to todo-form component -->
 <section class="container">
   <div class="row">
     <mat-card class="col-6 mx-auto">
       <form class="form-inline">
-        <mat-form-field appearance="standard" floatLabel="always" class="full-width">
+        <mat-form-field appearance="standard" floatLabel="always" focused="true" class="full-width">
           <mat-label>Add a Todo</mat-label>
-          <input matInput name="newTodo[title]" placeholder="What I like doing best is Nothing" autofocus="true" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()">
+          <input matInput name="newTodo[title]" autocomplete="off" placeholder="What I like doing best is Nothing" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()">
         </mat-form-field>
+        <div class="row px-3">
+          <button mat-button color="primary" class="ml-auto" (click)="addTodo()">Submit</button>
+        </div>
       </form>
     </mat-card>
   </div>
 </section>
 
+<!-- TODO convert to todo-list component -->
 <section class="container" *ngIf="todos.length > 0">
   <div class="row pb-2" *ngFor="let todo of todos">
+    <!-- TODO convert to todo-item component -->
     <mat-card class="col-6 mx-auto" [class.todo__completed]="todo.completed">
       <div class="row">
         <div class="col-1">
@@ -34,5 +41,6 @@
         </div>
       </div>
     </mat-card>
+    
   </div>
 </section>

@@ -3,7 +3,7 @@ import {
 } from '@angular/core/testing';
 
 import { TodoDataService } from './todo-data.service';
-import { Todo } from './todo';
+import { Todo } from '../classes/todo';
 
 describe('TodoDataService', () => {
   let service: TodoDataService;
