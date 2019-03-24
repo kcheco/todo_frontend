@@ -1,7 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { 
+import {
   MatCardModule, 
   MatToolbarModule, 
   MatFormFieldModule,
@@ -9,11 +10,15 @@ import {
   MatInputModule, 
   MatCheckboxModule
 } from '@angular/material';
+import { TodoDataService } from './todo-data.service';
 
 describe('AppComponent', () => {
+  let todoDataServiceStub : Partial<TodoDataService>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        BrowserAnimationsModule,
         FormsModule,
         MatCardModule,
         MatCheckboxModule,
@@ -21,6 +26,9 @@ describe('AppComponent', () => {
         MatIconModule,
         MatInputModule,
         MatToolbarModule
+      ],
+      providers: [
+        { provide: TodoDataService, useValue: todoDataServiceStub }
       ],
       declarations: [
         AppComponent
@@ -38,5 +46,12 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('TodoAngular');
+  });
+
+  it (`has a Add a Todo text field`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('label').textContent).toContain('Add a Todo');
   });
 });
