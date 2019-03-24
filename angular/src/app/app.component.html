@@ -22,7 +22,7 @@
     <mat-card class="col-6 mx-auto" [class.todo__completed]="todo.completed">
       <div class="row">
         <div class="col-1">
-          <mat-checkbox [checked]="todo.complete"></mat-checkbox>
+          <mat-checkbox [checked]="todo.completed" (change)="toggleCompleted(todo)"></mat-checkbox>
         </div>
         <div class="col-9">
           <mat-label>{{ todo.title }}</mat-label>
