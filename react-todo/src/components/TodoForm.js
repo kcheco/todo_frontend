@@ -8,19 +8,26 @@ class TodoForm extends Component {
     return (
         <TodoContextConsumer>
           { value => {
-            const { todoTitle, handleInput, handleAddTodo } = value;
+            const { todoTitle, setTodoTitle, handleAddTodo, errorMessages } = value;
             return (
-              <form className="Todo__form" id="addTodo">
+              <form 
+                className="Todo__form" 
+                id="addTodo"
+                onSubmit={ handleAddTodo }
+              >
                 <h2>What needs to get done?</h2>
+                { errorMessages !== "" &&
+                  <p>{ errorMessages.todoTitle }</p>
+                }
                 <Textfield 
-                  fieldName="todo[title]"
+                  fieldName="todoTitle"
                   placeholderText="..."
                   todoTitle={ todoTitle }
-                  handleInput={ handleInput }
+                  action={ setTodoTitle }
                 />
-                <Button 
-                  text="Add Todo" 
-                  eventHandler={ handleAddTodo } 
+                <Button
+                  type="submit"
+                  text="Add Todo"
                 />
               </form>
             )

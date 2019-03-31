@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
 
 const INITIAL_STATE = {
-  todos: [
-    {
-      id: 194104194191,
-      title: "Get first todo done",
-      completed: false
-    },
-    {
-      id: 430103419411,
-      title: "Get second todo done",
-      completed: false
-    }
-  ],
-  todoTitle: ''
+  todos: [],
+  todoTitle: '',
+  errorMessages: {}
 }
 
-const TodoContext = React.createContext(INITIAL_STATE);
+const TodoContext = React.createContext();
 
 export const TodoContextConsumer = TodoContext.Consumer;
+
+const _clearErrorMessage = Symbol('clearErrorMessage');
+const _setNewID = Symbol('setNewId');
 
 export default class TodoContextProvider extends Component {
   constructor(props) {
@@ -26,18 +19,28 @@ export default class TodoContextProvider extends Component {
     this.state = INITIAL_STATE;
   }
 
-  addNewTodo = () => {
-    const newTodo = { title: this.state.todoTitle, completed: false, id: Date.now() + Math.random() };
+  addNewTodo = () => {  
+    if ( this.state.todoTitle === "" || this.state.todoTitle == null || typeof this.state.todoTitle == 'undefined') {
+      this.setState({
+        errorMessages: { todoTitle: 'Todo title cannot be empty/blank.' }
+      });
+      return;
+    }
+
+    const newTodo = { title: this.state.todoTitle, completed: false, id: this[_setNewID]() };
     this.setState({
-      todos: this.state.todos.push(newTodo),
+      todos: [...this.state.todos, newTodo],
       todoTitle: ''
     })
+    this[_clearErrorMessage]();
   }
 
   deleteTodo = (id) => {
     this.setState({
       todos: this.state.todos.filter( t => t.id !== id)
     })
+    console.log(`Todo with id ${id} was removed`);
+    this[_clearErrorMessage]();
   }
 
   toggleTodoCompletion = (id) => {
@@ -45,12 +48,16 @@ export default class TodoContextProvider extends Component {
     todos = todos.map(todo => {
       if (todo.id === id) {
         todo.completed = !todo.completed;
+        
+        console.log(`Todo updated: ${JSON.stringify(todo)}`);
         return todo;
       } else {
         return todo;
       }
     })
+
     this.setState({ todos })
+    this[_clearErrorMessage]();
   }
 
   handleInput = (event) => {
@@ -61,13 +68,19 @@ export default class TodoContextProvider extends Component {
 
   handleAddTodo = (event) => {
     event.preventDefault();
-    if ( event.target.value !== "" ) {
-      console.log(event.target.value);
-      this.addNewTodo();
-    } else {
-      console.log('input not being read');
-      
-    }
+    this.addNewTodo();
+  }
+
+  // private
+  [_setNewID]() {
+    return Date.now() + (Math.floor(Math.random() * 1000000000000));
+  }
+
+  // private
+  [_clearErrorMessage]() {
+    this.setState({
+      errorMessages: {}
+    })
   }
 
   render() {
@@ -76,9 +89,10 @@ export default class TodoContextProvider extends Component {
         value={{ 
           todos: this.state.todos, 
           todoTitle: this.state.todoTitle,
+          errorMessages: this.state.errorMessages,
           deleteTodo: this.deleteTodo,
           toggleTodoCompletion: this.toggleTodoCompletion,
-          handleInput: this.handleInput,
+          setTodoTitle: this.handleInput,
           handleAddTodo: this.handleAddTodo
          }}
       >

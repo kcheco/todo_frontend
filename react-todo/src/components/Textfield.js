@@ -8,7 +8,9 @@ class Textfield extends Component {
         name={ this.props.fieldName } 
         placeholder={ this.props.placeholderText }
         value={ this.props.todoTitle }
-        onChange={ this.props.handleInput }
+        onChange={ this.props.action }
+        onBlur={ this.props.action }
+        autoFocus={ true }
       />
     );
   }

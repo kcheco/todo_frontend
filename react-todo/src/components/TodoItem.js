@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Checkbox from './Checkbox';
-import Button from './Button';
 
 class TodoItem extends Component {
   render() {
@@ -9,7 +8,7 @@ class TodoItem extends Component {
         <div className="col">
           <Checkbox 
             todoId={ this.props.todo.id }
-            fieldName="todo[completed]"
+            fieldName="todoTitle"
             isChecked={ this.props.todo.completed }
             toggleTodoCompletion={ this.props.toggleTodoCompletion }
           />
@@ -18,10 +17,7 @@ class TodoItem extends Component {
           { this.props.todo.title }
         </div>
         <div className="col">
-          <Button
-            text="Delete" 
-            eventHandler={ this.props.deleteTodo }
-          />
+          { this.props.deleteTodo }
         </div>
       </div>
     );
