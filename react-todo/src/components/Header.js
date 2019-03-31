@@ -4,7 +4,7 @@ class Header extends Component {
   render() {
     return (
       <header className="App-header">
-        <a className="App-link" href="#">
+        <a className="App-link" href="/">
           { this.props.appName }
         </a>
       </header>
