@@ -1,38 +1,80 @@
 import React, { Component } from 'react';
-import Textfield from './Textfield';
-import Button from './Button';
 import { TodoContextConsumer } from '../contexts/TodoContextProvider';
+import { 
+  Button, 
+  FormHelperText, 
+  Grid, 
+  TextField, 
+  Typography, 
+  Paper
+} from '@material-ui/core';
 
 class TodoForm extends Component {
   render() {
     return (
-        <TodoContextConsumer>
-          { value => {
-            const { todoTitle, setTodoTitle, handleAddTodo, errorMessages } = value;
-            return (
-              <form 
-                className="Todo__form" 
-                id="addTodo"
-                onSubmit={ handleAddTodo }
-              >
-                <h2>What needs to get done?</h2>
-                { errorMessages !== "" &&
-                  <p>{ errorMessages.todoTitle }</p>
-                }
-                <Textfield 
-                  fieldName="todoTitle"
-                  placeholderText="..."
-                  todoTitle={ todoTitle }
-                  action={ setTodoTitle }
-                />
-                <Button
-                  type="submit"
-                  text="Add Todo"
-                />
-              </form>
-            )
-          }}
-        </TodoContextConsumer>
+      <Grid container>
+        <Grid 
+          xs={12} 
+          md={4}  
+          style={{ marginTop: "1rem", marginRight: "auto", marginBottom: "1rem", marginLeft: "auto" }}
+          item
+        >
+          <Paper
+            className="Todo__form"
+            elevation={2}
+            style={{ paddingTop: "3rem", paddingRight: "2rem", paddingBottom: "2rem", paddingLeft: "2rem" }}
+          >
+            <Typography 
+              variant="h4"
+              gutterBottom={true}
+              align="left"
+              style={{ fontWeight: "700" }}
+            >
+              What needs to get done?
+            </Typography>
+            <TodoContextConsumer>
+              { value => {
+                const { todoTitle, setTodoTitle, handleAddTodo, errorMessages } = value;
+                return (
+                  <form  
+                    id="addTodo"
+                    onSubmit={ handleAddTodo }
+                  >
+                    <Grid item xs={12}>
+                      <TextField
+                        name="todoTitle"
+                        placeholder="...what I love do best is Nothing"
+                        value={ todoTitle }
+                        onChange={ setTodoTitle }
+                        onBlur={ setTodoTitle }
+                        autoFocus={ true }
+                        margin="dense"
+                        error={ errorMessages.todoTitle ? true : false }
+                        style={{ width: "100%" }}
+                      />
+                      { errorMessages !== "" &&
+                        <FormHelperText 
+                          error={ errorMessages.todoTitle ? true : false }
+                        >
+                          { errorMessages.todoTitle }
+                        </FormHelperText>
+                      }
+                    </Grid>
+                    <Grid item xs={12} style={{ textAlign: "right" }}>
+                      <Button
+                        type="submit"
+                        color="primary"
+                      >
+                        Add Todo
+                      </Button>
+                    </Grid>
+                  </form>
+                )
+              }}
+            </TodoContextConsumer>
+          </Paper>
+        </Grid>
+      </Grid>
     );
   }
 }

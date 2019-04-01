@@ -4,6 +4,7 @@ import Header from './Header';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 import TodoContextProvider from '../contexts/TodoContextProvider';
+import { Grid } from '@material-ui/core';
 
 class App extends Component {
   render() {
@@ -12,10 +13,12 @@ class App extends Component {
         <Header 
           appName="TodoReact" 
         />
-        <TodoContextProvider>
-          <TodoForm />
-          <TodoList />
-        </TodoContextProvider>
+        <Grid container style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
+          <TodoContextProvider>
+            <TodoForm />
+            <TodoList />
+          </TodoContextProvider>
+        </Grid>
       </div>
     );
   }

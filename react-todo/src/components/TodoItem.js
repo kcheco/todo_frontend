@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
-import Checkbox from './Checkbox';
+import { 
+  ListItem,
+  ListItemText,
+  ListItemSecondaryAction
+} from '@material-ui/core';
 
 class TodoItem extends Component {
   render() {
     return (
-      <div className="Todo__item view">
-        <div className="col">
-          <Checkbox 
-            todoId={ this.props.todo.id }
-            fieldName="todoTitle"
-            isChecked={ this.props.todo.completed }
-            toggleTodoCompletion={ this.props.toggleTodoCompletion }
-          />
-        </div>
-        <div className="col">
+      <ListItem className="Todo__item" disableGutters={true}>
+        { this.props.completeTodoCheckbox }
+        <ListItemText>
           { this.props.todo.title }
-        </div>
-        <div className="col">
-          { this.props.deleteTodo }
-        </div>
-      </div>
+        </ListItemText>
+        <ListItemSecondaryAction>
+          { this.props.deleteTodoButton }
+        </ListItemSecondaryAction>
+      </ListItem>
     );
   }
 }
