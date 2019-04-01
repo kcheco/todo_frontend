@@ -10,7 +10,10 @@ class Header extends Component {
     return (
       <AppBar>
         <Toolbar>
-          <Typography className="App-link" color="inherit" variant="h6">
+          <Typography 
+            color="inherit"
+            variant="h6"
+          >
             { this.props.appName }
           </Typography>
         </Toolbar>

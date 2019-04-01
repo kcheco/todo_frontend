@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../assets/css/TodoItem.css';
 import { 
   ListItem,
   ListItemText,
@@ -8,7 +9,9 @@ import {
 class TodoItem extends Component {
   render() {
     return (
-      <ListItem className="Todo__item" disableGutters={true}>
+      <ListItem 
+        className="Todo__item"
+      >
         { this.props.completeTodoCheckbox }
         <ListItemText>
           { this.props.todo.title }

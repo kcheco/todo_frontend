@@ -36,9 +36,11 @@ class TodoList extends Component {
             <TodoContextConsumer>
               { value => {
                 const { todos, toggleTodoCompletion, deleteTodo } = value;
+                const noTodoMsg = "Let's add something you want to get done";
+                
                 if (todos.length < 1) {
                   return (
-                    <p>Let's add something you want to get done</p>
+                    <p>{ noTodoMsg }</p>
                   );
                 }
 

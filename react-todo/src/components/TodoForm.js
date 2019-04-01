@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../assets/css/TodoForm.css';
 import { TodoContextConsumer } from '../contexts/TodoContextProvider';
 import { 
   Button, 
@@ -22,13 +23,11 @@ class TodoForm extends Component {
           <Paper
             className="Todo__form"
             elevation={2}
-            style={{ paddingTop: "3rem", paddingRight: "2rem", paddingBottom: "2rem", paddingLeft: "2rem" }}
           >
             <Typography 
               variant="h4"
               gutterBottom={true}
               align="left"
-              style={{ fontWeight: "700" }}
             >
               What needs to get done?
             </Typography>
@@ -52,6 +51,7 @@ class TodoForm extends Component {
                         error={ errorMessages.todoTitle ? true : false }
                         style={{ width: "100%" }}
                       />
+
                       { errorMessages !== "" &&
                         <FormHelperText 
                           error={ errorMessages.todoTitle ? true : false }
@@ -59,6 +59,7 @@ class TodoForm extends Component {
                           { errorMessages.todoTitle }
                         </FormHelperText>
                       }
+
                     </Grid>
                     <Grid item xs={12} style={{ textAlign: "right" }}>
                       <Button

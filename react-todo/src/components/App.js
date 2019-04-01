@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './../assets/css/App.css';
+import '../assets/css/App.css';
 import Header from './Header';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
@@ -13,7 +13,10 @@ class App extends Component {
         <Header 
           appName="TodoReact" 
         />
-        <Grid container style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
+        <Grid 
+          container
+          className="App__main"
+        >
           <TodoContextProvider>
             <TodoForm />
             <TodoList />
