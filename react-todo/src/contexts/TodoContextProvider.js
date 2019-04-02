@@ -19,6 +19,9 @@ export default class TodoContextProvider extends Component {
     this.state = INITIAL_STATE;
   }
 
+  /**
+   * Adds a new todo to todo list
+   */
   addNewTodo = () => {  
     if ( this.state.todoTitle === "" || this.state.todoTitle == null || typeof this.state.todoTitle == 'undefined') {
       this.setState({
@@ -35,6 +38,11 @@ export default class TodoContextProvider extends Component {
     this[_clearErrorMessage]();
   }
 
+  /**
+   * Removes a specific todo from the todos array
+   * 
+   * @param id
+   */
   deleteTodo = (id) => {
     this.setState({
       todos: this.state.todos.filter( t => t.id !== id)
@@ -43,6 +51,11 @@ export default class TodoContextProvider extends Component {
     this[_clearErrorMessage]();
   }
 
+  /**
+   * Sets the todo's completed status
+   * 
+   * @param id
+   */
   toggleTodoCompletion = (id) => {
     let todos = this.state.todos.slice();
     todos = todos.map(todo => {
@@ -60,23 +73,42 @@ export default class TodoContextProvider extends Component {
     this[_clearErrorMessage]();
   }
 
+  /**
+   * Event handler for detecting value of todo title
+   * 
+   * @param event
+   */
   handleInput = (event) => {
     this.setState({
       todoTitle: event.target.value
     });
   }
 
+  /**
+   * Event handler for adding a new todo
+   * 
+   * @param event
+   */
   handleAddTodo = (event) => {
     event.preventDefault();
     this.addNewTodo();
   }
 
-  // private
+  /**
+   * Generates a random identifier for a new todo
+   * 
+   * @returns number
+   * @private
+   */
   [_setNewID]() {
     return Date.now() + (Math.floor(Math.random() * 1000000000000));
   }
 
-  // private
+  /**
+   * Clears error messages
+   * 
+   * @private
+   */
   [_clearErrorMessage]() {
     this.setState({
       errorMessages: {}
