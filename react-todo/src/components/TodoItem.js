@@ -13,7 +13,9 @@ class TodoItem extends Component {
         className="Todo__item"
       >
         { this.props.completeTodoCheckbox }
-        <ListItemText>
+        <ListItemText
+          className={ this.props.todo.completed ? "Todo__completed" : "" }
+        >
           { this.props.todo.title }
         </ListItemText>
         <ListItemSecondaryAction>

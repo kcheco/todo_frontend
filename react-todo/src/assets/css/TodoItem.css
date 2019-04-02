@@ -1,3 +1,9 @@
 .Todo__item {
-  padding: 0px;
+  padding: 0px !important;
+}
+
+.Todo__completed span {
+  text-decoration: line-through #757575 solid;
+  color: #757575;
+  font-style: italic;
 }
