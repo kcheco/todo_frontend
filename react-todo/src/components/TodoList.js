@@ -17,6 +17,7 @@ class TodoList extends Component {
         <Grid 
           xs={12} 
           md={4} 
+          xl={3} 
           style={{ marginTop: "1rem", marginRight: "auto", marginBottom: "1rem", marginLeft: "auto" }} 
           item
         >
