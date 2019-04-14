@@ -3,7 +3,7 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <todo-form></todo-form>
     <div v-if="todos.length">
-      {{ todos }}
+      <todo-list v-bind:todos="todos" v-on:delete-todo="deleteTodo"></todo-list>
     </div>
     <p v-else>
       Nothing to do.
@@ -13,12 +13,16 @@
 
 <script>
 import TodoForm from './components/TodoForm.vue';
+import TodoList from './components/TodoList.vue';
 
 export default {
   name: 'app',
+
   components: {
-    TodoForm
+    TodoForm,
+    TodoList
   },
+
   props: {
     todos: {
       type: Array,
@@ -27,9 +31,15 @@ export default {
       }
     }
   },
+
   methods: {
     addToTodos(todo) {
       this.todos.push(todo)
+    },
+
+    deleteTodo(todo) {
+      const todoIndex = this.todos.indexOf(todo)
+      this.todos.splice(todoIndex, 1)
     }
   }
 }
