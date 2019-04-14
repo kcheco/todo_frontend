@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <todo-form></todo-form>
+    <todo-form v-on:add-todo="addTodo($event)"></todo-form>
     <div v-if="todos.length">
       <todo-list v-bind:todos="todos" v-on:delete-todo="deleteTodo"></todo-list>
     </div>
@@ -33,7 +33,7 @@ export default {
   },
 
   methods: {
-    addToTodos(todo) {
+    addTodo(todo) {
       this.todos.push(todo)
     },
 

@@ -9,6 +9,7 @@
             v-model="task" 
             class="form-control" 
             placeholder="try me out"
+            autofocus
           >
           <button>Click me</button>
         </form>
@@ -20,14 +21,15 @@
 <script>
 export default {
   name: "TodoForm",
+  
   data () {
     return {
       task: ""
     }
   },
+
   methods: {
     addTodo() {
-      const vm = this
       const taskText = this.task.trim()
       if (taskText) {
         const newTodo = { 
@@ -35,7 +37,7 @@ export default {
           id: Date.now() + (Math.floor(Math.random() * 1000000000000))
         }
 
-        vm.$parent.addToTodos(newTodo)
+        this.$emit('add-todo', newTodo)
         this.task = ""
       }
     }
