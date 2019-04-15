@@ -34,7 +34,8 @@ export default {
       if (taskText) {
         const newTodo = { 
           task: taskText, 
-          id: Date.now() + (Math.floor(Math.random() * 1000000000000))
+          id: Date.now() + (Math.floor(Math.random() * 1000000000000)),
+          completed: false
         }
 
         this.$emit('add-todo', newTodo)
