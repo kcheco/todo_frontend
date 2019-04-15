@@ -4,20 +4,12 @@
       <div class="col-md-5">
         <h1>Todo List</h1>
         <ul>
-          <li
-            v-for="todo in localTodos"
+          <todo-item 
+            v-for="todo in todos"
             v-bind:key="todo.id"
-          >
-            <div class="col">
-              {{ todo.task }}
-            </div>
-            <button
-              v-on:click="$emit('delete-todo', todo)"
-              class="btn btn-secondary"
-            >
-              Remove
-            </button>
-          </li>
+            v-bind:todo.sync="todo"
+            v-on:delete-todo="onDeleteTodo"
+          ></todo-item>
         </ul>
       </div>
     </div>
@@ -25,10 +17,19 @@
 </template>
 
 <script>
+import TodoItem from './TodoItem.vue'
+
 export default {
   name: "TodoList",
 
-  props: ['todos'],
+  components: {
+    TodoItem
+  },
+
+  props: [
+    'todos',
+    'onDeleteTodo'
+  ],
 
   data() {
     return {

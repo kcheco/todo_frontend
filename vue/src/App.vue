@@ -3,7 +3,7 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <todo-form v-on:add-todo="addTodo($event)"></todo-form>
     <div v-if="todos.length">
-      <todo-list v-bind:todos="todos" v-on:delete-todo="deleteTodo"></todo-list>
+      <todo-list v-bind:todos="todos" v-bind:onDeleteTodo="deleteTodo"></todo-list>
     </div>
     <p v-else>
       Nothing to do.
