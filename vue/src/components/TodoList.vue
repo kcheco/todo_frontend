@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container todo__list">
     <div class="row">
       <div class="col-md-5">
         <h1>Todo List</h1>

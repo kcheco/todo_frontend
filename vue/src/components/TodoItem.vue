@@ -12,12 +12,14 @@
     <div class="col">
       {{ todo.task }}
     </div>
-    <button
-      v-on:click="$emit('delete-todo', todo)"
-      class="btn btn-secondary"
-    >
-      Remove
-    </button>
+    <div class="col">
+      <button
+        v-on:click="$emit('delete-todo', todo)"
+        class="btn btn-secondary"
+      >
+        Remove
+      </button>
+    </div>
   </li>
 </template>
 

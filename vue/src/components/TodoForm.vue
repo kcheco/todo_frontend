@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container add__todo__form">
     <div class="row">
       <div class="col-md-5">
         <h1>Add Todo Form</h1>
@@ -29,6 +29,12 @@ export default {
   },
 
   methods: {
+    /**
+     * Receives form data in order to create a todo and event up to
+     * parent component
+     * 
+     * @returns void
+     */
     addTodo() {
       const taskText = this.task.trim()
       if (taskText) {
@@ -38,9 +44,20 @@ export default {
           completed: false
         }
 
+        // send todo object to parent component
         this.$emit('add-todo', newTodo)
-        this.task = ""
+
+        this.resetForm()
       }
+    },
+
+    /**
+     * Clears the task input field
+     * 
+     * @returns void
+     */
+    resetForm() {
+      this.task = ""
     }
   }
 };
