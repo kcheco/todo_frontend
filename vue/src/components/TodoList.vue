@@ -5,11 +5,11 @@
         <h1>Todo List</h1>
         <ul>
           <todo-item 
-            v-for="todo in todos"
+            v-for="todo in localTodos"
             v-bind:key="todo.id"
-            v-bind:todo.sync="todo"
+            v-bind:todo="todo"
             v-on:delete-todo="onDeleteTodo"
-          ></todo-item>
+          />
         </ul>
       </div>
     </div>
