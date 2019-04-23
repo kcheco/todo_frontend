@@ -1,19 +1,23 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <navbar></navbar>
     <todo-form v-on:add-todo="addTodo($event)"></todo-form>
     <todo-list
-      v-bind:todos="todos"
+      title="Todo List"
+      v-bind:todos="pendingTodos"
       v-bind:onDeleteTodo="deleteTodo"
-      v-if="todos.length"
     />
-    <p v-else>
-      Nothing to do.
-    </p>
+    <todo-list
+      v-if="completedTodos.length"
+      title="Completed List"
+      v-bind:todos="completedTodos"
+      v-bind:onDeleteTodo="deleteTodo"
+    />
   </div>
 </template>
 
 <script>
+import Navbar from './components/Navbar.vue';
 import TodoForm from './components/TodoForm.vue';
 import TodoList from './components/TodoList.vue';
 
@@ -21,15 +25,35 @@ export default {
   name: 'app',
 
   components: {
+    Navbar,
     TodoForm,
     TodoList
   },
 
-  props: {
-    todos: {
-      type: Array,
-      default: function() {
-        return []
+  data() {
+    return {
+      todos: []
+    }
+  },
+
+  computed: {
+    /**
+     * @property { Function } completedTodos gets a list of todos marked completed
+     * @returns Array
+     */
+    completedTodos: {
+      get: function() {
+        return this.todos.filter( todo => todo.completed === true )
+      }
+    },
+
+    /**
+     * @property { Function } pendingTodos gets a list of todos not marked completed
+     * @returns Array
+     */
+    pendingTodos: {
+      get: function() {
+        return this.todos.filter( todo => todo.completed === false )
       }
     }
   },
@@ -67,8 +91,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

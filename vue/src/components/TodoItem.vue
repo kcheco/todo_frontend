@@ -1,21 +1,18 @@
 <template>
-  <li class="todo__item">
-    <div class="col">
-      <div class="form-check">
-        <input 
-          type="checkbox"
-          class="form-check-input"
-          v-model="todo.completed"
-        >
-      </div>
+  <li class="todo__item row mb-2 mx-0">
+    <div class="col-1">
+      <input 
+        type="checkbox"
+        v-model="todo.completed"
+      >
     </div>
-    <div class="col">
+    <div class="col-8">
       {{ todo.task }}
     </div>
     <div class="col">
       <button
         v-on:click="$emit('delete-todo', todo)"
-        class="btn btn-secondary"
+        class="btn btn-outline-secondary btn-sm"
       >
         Remove
       </button>
@@ -27,7 +24,12 @@
 export default {
   name: "TodoItem",
 
-  props: ['todo']
+  props: {
+    todo: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 

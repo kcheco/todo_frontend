@@ -1,17 +1,21 @@
 <template>
-  <div class="container add__todo__form">
+  <div class="container add__todo__form py-5">
     <div class="row">
-      <div class="col-md-5">
-        <h1>Add Todo Form</h1>
+      <div class="mx-auto col-md-8 col-lg-6 col-xl-5 p-3 bg-white rounded shadow-sm">
+        <h1>Todo Form</h1>
         <form v-on:submit.prevent="addTodo()">
-          <input 
-            type="text" 
-            v-model="task" 
-            class="form-control" 
-            placeholder="try me out"
-            autofocus
-          >
-          <button>Click me</button>
+          <div class="form-group">
+            <input 
+              type="text" 
+              v-model="task" 
+              class="form-control" 
+              placeholder="...what I like to do best is nothing"
+              autofocus
+            >
+          </div>
+          <div class="form-group">
+            <button class="btn btn-success">Create</button>
+          </div>
         </form>
       </div>
     </div>
