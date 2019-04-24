@@ -4,23 +4,17 @@
       <div class="mx-auto col-md-8 col-lg-6 col-xl-5 p-3 bg-white rounded shadow-sm">
         <h1>Todo Form</h1>
         <form v-on:submit.prevent="addTodo()">
-          <div :class="{'form-group': true, 'has-error': errors.task}">
-            <input 
-              type="text" 
-              v-model="task" 
-              class="form-control" 
-              placeholder="...what I like to do best is nothing"
-              autofocus
-            >
-            <div
-              class="error-text"
-              v-show="errors.task">
-              {{ errors.task }}
-            </div>
-          </div>
-          <div class="form-group">
-            <button class="btn btn-success">Create</button>
-          </div>
+          <bootstrap-textfield
+            fieldName="task"
+            placeholderText="...what I like to do best is nothing"
+            v-on:handle-input="onInput($event)"
+            v-bind:input-data="task"
+            v-bind:errors="errors"
+          ></bootstrap-textfield>
+          <bootstrap-button
+            text="Create"
+            v-bind:buttonStyle="buttonStyle"
+          ></bootstrap-button>
         </form>
       </div>
     </div>
@@ -28,19 +22,34 @@
 </template>
 
 <script>
+import BootstrapTextfield from './BootstrapTextfield.vue'
+import BootstrapButton from './BootstrapButton.vue'
+
 export default {
   name: "TodoForm",
+
+  components: {
+    BootstrapTextfield,
+    BootstrapButton
+  },
   
   data () {
     return {
       task: "",
       errors: {
         task: ""
+      },
+      buttonStyle: {
+        success: true
       }
     }
   },
 
   methods: {
+    onInput(e) {
+      this.task = e.target.value
+    },
+
     /**
      * Receives form data in order to create a todo and event up to
      * parent component
