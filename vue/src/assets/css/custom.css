@@ -19,3 +19,19 @@ body {
 .btn {
   font-weight: 700;
 }
+
+.has-error input {
+  border-color: #dc3545;
+}
+
+.has-error input:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 .2rem rgba(220,53,69,.25)
+}
+
+.has-error .error-text{
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 80%;
+  color: #dc3545
+}

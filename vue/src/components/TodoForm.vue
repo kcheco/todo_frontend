@@ -4,7 +4,7 @@
       <div class="mx-auto col-md-8 col-lg-6 col-xl-5 p-3 bg-white rounded shadow-sm">
         <h1>Todo Form</h1>
         <form v-on:submit.prevent="addTodo()">
-          <div class="form-group">
+          <div :class="{'form-group': true, 'has-error': errors.task}">
             <input 
               type="text" 
               v-model="task" 
@@ -12,6 +12,11 @@
               placeholder="...what I like to do best is nothing"
               autofocus
             >
+            <div
+              class="error-text"
+              v-show="errors.task">
+              {{ errors.task }}
+            </div>
           </div>
           <div class="form-group">
             <button class="btn btn-success">Create</button>
@@ -28,7 +33,10 @@ export default {
   
   data () {
     return {
-      task: ""
+      task: "",
+      errors: {
+        task: ""
+      }
     }
   },
 
@@ -42,6 +50,8 @@ export default {
     addTodo() {
       const taskText = this.task.trim()
       if (taskText) {
+        this.errors.task = ""
+
         const newTodo = { 
           task: taskText, 
           id: Date.now() + (Math.floor(Math.random() * 1000000000000)),
@@ -52,6 +62,8 @@ export default {
         this.$emit('add-todo', newTodo)
 
         this.resetForm()
+      } else {
+        this.errors.task = 'Task cannot be blank/empty.'
       }
     },
 
