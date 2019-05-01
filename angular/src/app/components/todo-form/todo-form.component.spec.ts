@@ -12,7 +12,7 @@ import {
   MatCardModule,
   MatInputModule
 } from '@angular/material';
-import { Todo } from '../classes/todo';
+import { Todo } from '../../classes/todo';
 
 describe('TodoFormComponent', () => {
   let component : TodoFormComponent

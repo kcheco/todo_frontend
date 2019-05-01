@@ -11,7 +11,7 @@ import {
   MatCheckboxModule
 } from '@angular/material';
 import { TodoDataService } from './services/todo-data.service';
-import { TodoFormComponent } from './components/todo-form.component';
+import { TodoFormComponent } from './components/todo-form/todo-form.component';
 
 describe('AppComponent', () => {
   let todoDataServiceStub : Partial<TodoDataService>;

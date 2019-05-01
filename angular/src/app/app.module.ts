@@ -13,7 +13,7 @@ import {
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { TodoFormComponent } from './components/todo-form.component';
+import { TodoFormComponent } from './components/todo-form/todo-form.component';
 
 @NgModule({
   declarations: [
