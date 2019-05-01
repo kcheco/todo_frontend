@@ -11,6 +11,7 @@ import {
   MatCheckboxModule
 } from '@angular/material';
 import { TodoDataService } from './services/todo-data.service';
+import { TodoFormComponent } from './components/todo-form.component';
 
 describe('AppComponent', () => {
   let todoDataServiceStub : Partial<TodoDataService>;
@@ -31,7 +32,8 @@ describe('AppComponent', () => {
         { provide: TodoDataService, useValue: todoDataServiceStub }
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        TodoFormComponent
       ],
     }).compileComponents();
   }));
@@ -46,12 +48,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('TodoAngular');
-  });
-
-  it (`has a Add a Todo text field`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('label').textContent).toContain('Add a Todo');
   });
 });

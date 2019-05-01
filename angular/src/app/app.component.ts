@@ -9,26 +9,24 @@ import { Todo } from './classes/todo';
   providers: [TodoDataService]
 })
 export class AppComponent {
-  private newTodo: Todo = new Todo({});
   constructor(private todoDataService: TodoDataService) {
   }
 
   title = 'TodoAngular';
 
-  addTodo() {
-    this.todoDataService.saveTodo(this.newTodo);
-    this.newTodo = new Todo({});
+  onAddTodo(todo: Todo) : void {
+    this.todoDataService.saveTodo(todo);
   }
 
-  removeTodo(todo) {
+  removeTodo(todo: Todo) : void {
     this.todoDataService.deleteTodoById(todo.id);
   }
 
-  toggleCompleted(todo) {
+  toggleCompleted(todo: Todo) : void {
     this.todoDataService.toggleComplete(todo.id);
   }
 
-  get todos() {
+  get todos() : Todo[] {
     return this.todoDataService.getTodos();
   }
 }

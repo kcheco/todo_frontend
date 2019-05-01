@@ -13,10 +13,12 @@ import {
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
+import { TodoFormComponent } from './components/todo-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TodoFormComponent
   ],
   imports: [
     BrowserModule,

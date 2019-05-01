@@ -5,22 +5,7 @@
   </mat-toolbar>
 </header>
 
-<!-- TODO convert to todo-form component -->
-<section class="container">
-  <div class="row">
-    <mat-card class="col-6 mx-auto">
-      <form class="form-inline">
-        <mat-form-field appearance="standard" floatLabel="always" focused="true" class="full-width">
-          <mat-label>Add a Todo</mat-label>
-          <input matInput name="newTodo[title]" autocomplete="off" placeholder="What I like doing best is Nothing" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()">
-        </mat-form-field>
-        <div class="row px-3">
-          <button mat-button color="primary" class="ml-auto" (click)="addTodo()">Submit</button>
-        </div>
-      </form>
-    </mat-card>
-  </div>
-</section>
+<todo-form (addTodoEvent)="onAddTodo($event)"></todo-form>
 
 <!-- TODO convert to todo-list component -->
 <section class="container" *ngIf="todos.length > 0">
