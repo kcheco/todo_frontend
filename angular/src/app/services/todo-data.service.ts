@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Todo } from '../classes/todo';
+import { Todo } from '../model/todo';
+import { isArray } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { Todo } from '../classes/todo';
 export class TodoDataService {
   
   private lastId: number = 0;
-  private todos: Todo[] = [];
+  protected todos: Todo[] = [];
 
   constructor() { }
 
@@ -15,14 +16,11 @@ export class TodoDataService {
     return this.todos;
   };
 
-  saveTodo(todo: Todo) : TodoDataService {
-    if (!todo.title) {
-      throw new Error('Todo title cannot be empty/blank.');
-    }
-
-    if (!todo.id) {
-      todo.id = this.increment_id();
-      this.todos.push(todo);
+  saveTodo(todoAttr: Todo | Todo[]) : TodoDataService {
+    if (isArray(todoAttr)) {
+      this._saveTodos(todoAttr);
+    } else {
+      this._saveTodo(todoAttr);
     }
 
     return this;
@@ -75,4 +73,21 @@ export class TodoDataService {
   private increment_id() : number {
     return ++this.lastId;
   };
+
+  private _saveTodo(todo: Todo) : void {
+    if (!todo.title) {
+      throw new Error('Todo title cannot be empty/blank.');
+    }
+
+    if (!todo.id) {
+      todo.id = this.increment_id();
+      this.todos.push(todo);
+    }
+  }
+
+  private _saveTodos(todosArray: Todo[]) : void {
+    todosArray.map((todo) => {
+      this._saveTodo(todo);
+    })
+  }
 }
