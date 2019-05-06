@@ -14,11 +14,13 @@ import {
 
 import { AppComponent } from './app.component';
 import { TodoFormComponent } from './components/todo-form/todo-form.component';
+import { TodoListComponent } from './components/todo-list/todo-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoFormComponent
+    TodoFormComponent,
+    TodoListComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,7 @@ import { TodoFormComponent } from './components/todo-form/todo-form.component';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatToolbarModule 
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

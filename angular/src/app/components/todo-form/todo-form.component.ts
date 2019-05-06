@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Todo } from '../../model/todo';
 
 @Component ({
-  selector: 'todo-form',
+  selector: 'app-todo-form',
   templateUrl: './todo-form.component.html'
 })
 export class TodoFormComponent {
