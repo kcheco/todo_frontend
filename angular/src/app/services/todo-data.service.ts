@@ -16,7 +16,7 @@ export class TodoDataService {
     return this.todos;
   };
 
-  saveTodo(todoAttr: Todo | Todo[]) : TodoDataService {
+  saveTodo(todoAttr: any) : TodoDataService {
     if (isArray(todoAttr)) {
       this._saveTodos(todoAttr);
     } else {
