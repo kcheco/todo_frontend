@@ -10,6 +10,7 @@ import {
   MatCardModule, MatCheckboxModule, MatIconModule, MatFormFieldModule
 } from '@angular/material';
 import { By } from '@angular/platform-browser';
+import { TodoItemComponent } from '../todo-item/todo-item.component';
 
 const TODOS = getTestTodos();
 
@@ -27,7 +28,8 @@ describe('TodoListComponent', () => {
         MatIconModule
       ],
       declarations: [
-        TodoListComponent
+        TodoListComponent,
+        TodoItemComponent
       ]
     }).compileComponents();
   });

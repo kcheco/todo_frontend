@@ -1,22 +1,7 @@
 <section class="container todo__list">
   <div class="row pb-2" *ngFor="let todo of todos">
     <!-- TODO convert to todo-item component -->
-    <mat-card class="col-6 mx-auto" [class.todo__completed]="todo.completed">
-      <div class="row">
-        <div class="col-1">
-          <mat-checkbox [checked]="todo.completed" (change)="toggleCompleted(todo)"></mat-checkbox>
-        </div>
-        <div class="col-9">
-          <mat-label>{{ todo.title }}</mat-label>
-        </div>
-        <div class="col-2">
-          <button mat-button class="destroy__todo" (click)="removeTodo(todo)">
-            <mat-icon>delete_outline</mat-icon>
-          </button>
-        </div>
-      </div>
-    </mat-card>
-    
+    <app-todo-item class="full-width" [todo]="todo"></app-todo-item>
   </div>
   <div class="row pb-2" *ngIf="todos.length < 1">
     <mat-card class="col-6 mx-auto">

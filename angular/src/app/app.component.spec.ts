@@ -13,6 +13,7 @@ import {
 import { TodoDataService } from './services/todo-data.service';
 import { TodoFormComponent } from './components/todo-form/todo-form.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
 
 describe('AppComponent', () => {
   let todoDataServiceStub : Partial<TodoDataService>;
@@ -35,7 +36,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         TodoFormComponent,
-        TodoListComponent
+        TodoListComponent,
+        TodoItemComponent
       ],
     }).compileComponents();
   }));
