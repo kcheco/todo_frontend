@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatCardModule, 
   MatToolbarModule, 
@@ -23,6 +23,7 @@ describe('AppComponent', () => {
       imports: [
         BrowserAnimationsModule,
         FormsModule,
+        ReactiveFormsModule,
         MatCardModule,
         MatCheckboxModule,
         MatFormFieldModule,

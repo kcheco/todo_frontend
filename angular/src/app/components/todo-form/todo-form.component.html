@@ -1,13 +1,13 @@
 <section class="container">
   <div class="row">
     <mat-card class="col-6 mx-auto">
-      <form class="form-inline">
+      <form class="form-inline" (ngSubmit)="createTodo()">
         <mat-form-field appearance="standard" floatLabel="always" focused="true" class="full-width">
           <mat-label>Add a Todo</mat-label>
-          <input matInput name="title" #title autocomplete="off" placeholder="What I like doing best is Nothing">
+          <input matInput [formControl]="title" autocomplete="off" placeholder="What I like doing best is Nothing">
         </mat-form-field>
         <div class="row px-3">
-          <button mat-button color="primary" class="ml-auto" (click)="createTodo(title.value)">Submit</button>
+          <button mat-button color="primary" class="ml-auto">Submit</button>
         </div>
       </form>
     </mat-card>

@@ -8,7 +8,7 @@ import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
-  FormsModule
+  FormsModule, ReactiveFormsModule
 } from '@angular/forms';
 
 import {
@@ -30,6 +30,7 @@ describe('TodoFormComponent', () => {
       imports: [
         BrowserAnimationsModule,
         FormsModule,
+        ReactiveFormsModule,
         MatCardModule,
         MatInputModule
       ],
@@ -52,10 +53,6 @@ describe('TodoFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should contain a text field with a name attribute of title', () => {
-    expect(inputEl.name).toBe('title');
-  });
-
   it('should set input form control as an empty value when component renders', () => {
     fixture.detectChanges();
     expect(inputEl.value).toBe('');
@@ -68,7 +65,7 @@ describe('TodoFormComponent', () => {
     inputEl.value = "Get first todo done";
     inputEl.dispatchEvent(new Event('input'));
     
-    expect(inputEl.value).toBe(expectedTodo.title);
+    expect(component.title.value).toBe(expectedTodo.title);
   });
 
   it('#createTodo should emit a new todo', () => {
@@ -76,11 +73,11 @@ describe('TodoFormComponent', () => {
     let todoAfterSubmit : Todo;
 
     // simulate entering title for new todo
-    inputEl.value = expectedTodo.title;
+    component.title.setValue(expectedTodo.title);
     // subscribe to Observable
     component.addTodoEvent.subscribe((todo) => todoAfterSubmit = todo );
     // execute subscription above by calling #createTodo
-    component.createTodo(inputEl.value);
+    component.createTodo();
     
     expect(todoAfterSubmit).toEqual(expectedTodo);
   });
@@ -89,7 +86,7 @@ describe('TodoFormComponent', () => {
     spyOn(component.addTodoEvent, 'emit');
 
     // simulate entering title for new todo
-    inputEl.value = expectedTodo.title;
+    component.title.setValue(expectedTodo.title);
     // simulate click the submit button on the form
     buttonDe.nativeElement.click();
 
