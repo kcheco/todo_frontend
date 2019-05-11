@@ -1,7 +1,7 @@
 <section class="container todo__list">
   <div class="row pb-2" *ngFor="let todo of todos">
     <!-- TODO convert to todo-item component -->
-    <app-todo-item class="full-width" [todo]="todo"></app-todo-item>
+    <app-todo-item class="full-width" [todo]="todo" (removeTodoEvent)="removeTodo($event)"></app-todo-item>
   </div>
   <div class="row pb-2" *ngIf="todos.length < 1">
     <mat-card class="col-6 mx-auto">
