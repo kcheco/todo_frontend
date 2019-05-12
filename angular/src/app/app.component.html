@@ -5,6 +5,10 @@
   </mat-toolbar>
 </header>
 
-<app-todo-form (addTodoEvent)="onAddTodo($event)"></app-todo-form>
+<app-todo-form
+  (addTodoEvent)="onAddTodo($event)"></app-todo-form>
 
-<app-todo-list [todos]="todos" (removeTodoEvent)="removeTodo($event)"></app-todo-list>
+<app-todo-list
+  [todos]="todos"
+  (toggleCompleteEvent)="toggleComplete($event)"
+  (removeTodoEvent)="removeTodo($event)"></app-todo-list>

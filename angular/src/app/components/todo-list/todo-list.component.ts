@@ -8,10 +8,15 @@ import { Todo } from '../../model/todo'
 export class TodoListComponent {
   @Input() todos: Todo[];
   @Output() removeTodoEvent = new EventEmitter<Todo>();
+  @Output() toggleCompleteEvent = new EventEmitter<Todo>();
 
   constructor() {}
 
   removeTodo(todo: Todo) {
     this.removeTodoEvent.emit(todo);
+  }
+
+  toggleComplete(todo: Todo) {
+    this.toggleCompleteEvent.emit(todo);
   }
 }

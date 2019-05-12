@@ -9,7 +9,6 @@ import { getTestTodos } from 'src/app/services/testing/test-todo-data.service';
 import {
   MatCardModule, MatCheckboxModule, MatFormFieldModule, MatIconModule
 } from '@angular/material';
-import { DebugElement } from '@angular/core';
 
 const TODOS = getTestTodos();
 
@@ -17,7 +16,6 @@ describe('TodoItemComponent', () => {
   let component : TodoItemComponent;
   let fixture : ComponentFixture<TodoItemComponent>;
   let todo : Todo;
-  let buttonDe : DebugElement
 
   beforeEach(async() => {
     TestBed.configureTestingModule({
@@ -36,6 +34,7 @@ describe('TodoItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TodoItemComponent);
     component = fixture.componentInstance;
+    todo = TODOS[0];
   });
 
   it('should create', () => {
@@ -43,7 +42,6 @@ describe('TodoItemComponent', () => {
   });
 
   it('should receive a todo', () => {
-    todo = TODOS[0];
     component.todo = todo;
     fixture.detectChanges();
 
@@ -52,7 +50,6 @@ describe('TodoItemComponent', () => {
 
   it('should send the todo I would like to remove from list', () => {
     let todoToDelete : Todo;
-    todo = TODOS[0];
     component.todo = todo;
 
     // subscribe to event emitter
@@ -65,12 +62,31 @@ describe('TodoItemComponent', () => {
   });
 
   it('removeTodoEvent should emit when button is clicked', () => {
-    todo = TODOS[0];
-
     spyOn(component.removeTodoEvent, 'emit');
     // simulate delete button being clicked
     component.removeTodo(todo);
 
     expect(component.removeTodoEvent.emit).toHaveBeenCalledWith(todo);
-  })
+  });
+
+  it('should send the todo I have toggled the complete status', () => {
+    let toggledTodo : Todo;
+    component.todo = todo;
+
+    // subscribe to event emitter
+    component.toggleCompleteEvent.subscribe((todo) => toggledTodo = todo);
+
+    // simulate click the checkbox
+    component.toggleComplete(todo);
+
+    expect(toggledTodo).toBe(todo);
+  });
+
+  it('toggleCompleteEvent should emit after checkbox is clicked', () => {
+    spyOn(component.toggleCompleteEvent, 'emit');
+
+    component.toggleComplete(todo);
+
+    expect(component.toggleCompleteEvent.emit).toHaveBeenCalledWith(todo);
+  });
 });
