@@ -10,12 +10,10 @@ class TodoItem extends Component {
   render() {
     return (
       <ListItem 
-        className="Todo__item"
-      >
+        className="Todo__item">
         { this.props.completeTodoCheckbox }
         <ListItemText
-          className={ this.props.todo.completed ? "Todo__completed" : "" }
-        >
+          className={ this.props.todo.completed ? "Todo__completed" : "" }>
           { this.props.todo.title }
         </ListItemText>
         <ListItemSecondaryAction>

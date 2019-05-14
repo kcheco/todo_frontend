@@ -10,13 +10,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header 
-          appName="TodoReact" 
-        />
+        <Header appName="TodoReact"/>
         <Grid 
           container
-          className="App__main"
-        >
+          className="App__main">
           <TodoContextProvider>
             <TodoForm />
             <TodoList />

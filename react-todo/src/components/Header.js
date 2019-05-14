@@ -12,8 +12,7 @@ class Header extends Component {
         <Toolbar>
           <Typography 
             color="inherit"
-            variant="h6"
-          >
+            variant="h6">
             { this.props.appName }
           </Typography>
         </Toolbar>

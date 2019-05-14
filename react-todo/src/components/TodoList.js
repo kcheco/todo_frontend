@@ -19,18 +19,15 @@ class TodoList extends Component {
           md={4} 
           xl={3} 
           style={{ marginTop: "1rem", marginRight: "auto", marginBottom: "1rem", marginLeft: "auto" }} 
-          item
-        >
+          item>
           <Paper
             className="Todo__list"
             elevation={2}
-            style={{ textAlign: "left", paddingTop: "3rem", paddingRight: "2rem", paddingBottom: "3rem", paddingLeft: "2rem" }}
-          >
+            style={{ textAlign: "left", paddingTop: "3rem", paddingRight: "2rem", paddingBottom: "3rem", paddingLeft: "2rem" }}>
             <Typography 
               variant="h4" 
               gutterBottom={true}
-              style={{ fontWeight: "700" }}
-            >
+              style={{ fontWeight: "700" }}>
               Todo List
             </Typography>
             <List>
@@ -55,15 +52,13 @@ class TodoList extends Component {
                           key={ todo.id }
                           name="todoTitle"
                           checked={ todo.completed }
-                          onChange={() => toggleTodoCompletion(todo.id) }
-                        />
+                          onChange={() => toggleTodoCompletion(todo.id) }/>
                       ]}
                       deleteTodoButton={[
                         <Button
                           key={ todo.id }
                           color="secondary"
-                          onClick={() => deleteTodo(todo.id) }
-                        >
+                          onClick={() => deleteTodo(todo.id) }>
                           Delete
                         </Button>
                       ]}

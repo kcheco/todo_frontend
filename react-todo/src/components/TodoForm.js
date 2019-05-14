@@ -19,17 +19,14 @@ class TodoForm extends Component {
           md={4}  
           xl={3} 
           style={{ marginTop: "1rem", marginRight: "auto", marginBottom: "1rem", marginLeft: "auto" }}
-          item
-        >
+          item>
           <Paper
             className="Todo__form"
-            elevation={2}
-          >
+            elevation={2}>
             <Typography 
               variant="h4"
               gutterBottom={true}
-              align="left"
-            >
+              align="left">
               What needs to get done?
             </Typography>
             <TodoContextConsumer>
@@ -38,8 +35,7 @@ class TodoForm extends Component {
                 return (
                   <form  
                     id="addTodo"
-                    onSubmit={ handleAddTodo }
-                  >
+                    onSubmit={ handleAddTodo } >
                     <Grid item xs={12}>
                       <TextField
                         name="todoTitle"
@@ -50,13 +46,11 @@ class TodoForm extends Component {
                         autoFocus={ true }
                         margin="dense"
                         error={ errorMessages.todoTitle ? true : false }
-                        style={{ width: "100%" }}
-                      />
+                        style={{ width: "100%" }} />
 
                       { errorMessages !== "" &&
                         <FormHelperText 
-                          error={ errorMessages.todoTitle ? true : false }
-                        >
+                          error={ errorMessages.todoTitle ? true : false } >
                           { errorMessages.todoTitle }
                         </FormHelperText>
                       }
@@ -65,8 +59,7 @@ class TodoForm extends Component {
                     <Grid item xs={12} style={{ textAlign: "right" }}>
                       <Button
                         type="submit"
-                        color="primary"
-                      >
+                        color="primary">
                         Add Todo
                       </Button>
                     </Grid>

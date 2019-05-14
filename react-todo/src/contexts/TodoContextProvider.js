@@ -126,8 +126,7 @@ export default class TodoContextProvider extends Component {
           toggleTodoCompletion: this.toggleTodoCompletion,
           setTodoTitle: this.handleInput,
           handleAddTodo: this.handleAddTodo
-         }}
-      >
+         }}>
         { this.props.children }
       </TodoContext.Provider>
     );
